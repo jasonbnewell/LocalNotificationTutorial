@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import UserNotifications
 
 class ViewController: UIViewController {
     @IBOutlet weak var secondsLabel: UILabel!
@@ -32,11 +33,15 @@ class ViewController: UIViewController {
         secondsToWait = Int(sender.value)
     }
 
-    @IBAction func scheduleButtonPressed(sender: UIButton) {
-        var localNotification = UILocalNotification()
-        localNotification.alertBody = "This is a scheduled notification" // setting the alertBody property so we can customize a text message that the alert shows
-        localNotification.fireDate = NSDate(timeIntervalSinceNow: NSTimeInterval(secondsToWait)) // setting the fireDate property to a future date
-        UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
+    @IBAction func scheduleButtonPressed(withSender: UIButton) {
+        let center = UNUserNotificationCenter.current()
+        
+        
+        
+
+//        localNotification.alertBody = "This is a scheduled notification" // setting the alertBody property so we can customize a text message that the alert shows
+//        localNotification.fireDate = Date(timeIntervalSinceNow:TimeInterval(secondsToWait)) // setting the fireDate property to a future date
+//        UIApplication.shared.scheduleLocalNotification(localNotification)
     }
 }
 
