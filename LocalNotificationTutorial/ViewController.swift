@@ -34,8 +34,8 @@ class ViewController: UIViewController {
 
     @IBAction func scheduleButtonPressed(sender: UIButton) {
         var localNotification = UILocalNotification()
-        localNotification.alertBody = "This is a scheduled notification"
-        localNotification.fireDate = NSDate(timeIntervalSinceNow: NSTimeInterval(secondsToWait))
+        localNotification.alertBody = "This is a scheduled notification" // setting the alertBody property so we can customize a text message that the alert shows
+        localNotification.fireDate = NSDate(timeIntervalSinceNow: NSTimeInterval(secondsToWait)) // setting the fireDate property to a future date
         UIApplication.sharedApplication().scheduleLocalNotification(localNotification)
     }
 }

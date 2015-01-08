@@ -19,7 +19,10 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     }
     
     func application(application: UIApplication, didReceiveLocalNotification notification: UILocalNotification) {
-        UIAlertView(title: "Notification", message: notification.alertBody, delegate: nil, cancelButtonTitle: "Ok").show() // Just show an alert with the notification message
+        let alertController = UIAlertController(title: "Notification", message: notification.alertBody, preferredStyle: .Alert) // create an alert controller with the notification message
+        let okAction = UIAlertAction(title: "Ok", style: .Cancel, handler: nil) // add an Ok button
+        alertController.addAction(okAction)
+        window?.rootViewController?.presentViewController(alertController, animated: true, completion: nil) // present the alert through ViewController
     }
 
     func applicationWillResignActive(application: UIApplication) {
