@@ -28,7 +28,7 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func secondStepperValueChanged(sender: UIStepper) {
+    @IBAction func secondsStepperValueChanged(sender: UIStepper) {
         secondsToWait = Int(sender.value)
     }
 
