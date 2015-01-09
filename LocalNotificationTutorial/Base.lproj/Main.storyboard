@@ -18,6 +18,9 @@
                         <subviews>
                             <stepper opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" value="15" minimumValue="15" maximumValue="360" stepValue="15" translatesAutoresizingMaskIntoConstraints="NO" id="Z5Y-cy-m2e">
                                 <rect key="frame" x="16" y="49" width="94" height="29"/>
+                                <connections>
+                                    <action selector="secondsStepperValueChanged:" destination="vXZ-lx-hvc" eventType="valueChanged" id="mMJ-yf-Igi"/>
+                                </connections>
                             </stepper>
                             <button opaque="NO" contentMode="scaleToFill" fixedFrame="YES" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="BBl-GY-0kV">
                                 <rect key="frame" x="16" y="86" width="148" height="30"/>
