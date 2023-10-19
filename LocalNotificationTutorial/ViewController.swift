@@ -13,15 +13,15 @@ class ViewController: UIViewController {
     @IBOutlet weak var secondsLabel: UILabel!
     @IBOutlet weak var secondsStepper: UIStepper!
     
-    private var secondsToWait:Int! {
+    private var secondsToWait:TimeInterval! {
         didSet {
-            secondsLabel.text = "\(secondsToWait) seconds"
+            secondsLabel.text = "\(secondsToWait!) seconds"
         }
     }
     
     override func viewDidLoad() {
         super.viewDidLoad()
-        secondsToWait = Int(secondsStepper.value)
+        secondsToWait = Double(secondsStepper.value)
     }
 
     override func didReceiveMemoryWarning() {
@@ -29,13 +29,30 @@ class ViewController: UIViewController {
         // Dispose of any resources that can be recreated.
     }
 
-    @IBAction func secondsStepperValueChanged(sender: UIStepper) {
-        secondsToWait = Int(sender.value)
+    @IBAction func secondsValueChanged(sender: UIStepper) {
+        secondsToWait = TimeInterval(sender.value)
     }
 
-    @IBAction func scheduleButtonPressed(withSender: UIButton) {
-        let center = UNUserNotificationCenter.current()
+    @IBAction func schedulePress(_ sender: UIButton) {
+        let content = UNMutableNotificationContent()
+        content.title = "!"
+//        content.attachments = UNNotificationAtt
+        content.body = "hello"
+        content.categoryIdentifier = "reminder"
         
+        // TODO: Compile time check
+        content.sound = .default
+        content.userInfo = ["some": "info"]
+   
+        
+
+        let wait = TimeInterval(secondsToWait)
+        let trigger = UNTimeIntervalNotificationTrigger(timeInterval: TimeInterval(secondsToWait), repeats: true)
+        
+        let request = UNNotificationRequest(identifier: UUID().uuidString, content: content, trigger:trigger)
+        
+        let center = UNUserNotificationCenter.current()
+        center.add(request)
         
         
 

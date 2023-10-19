@@ -11,44 +11,31 @@ import UserNotifications
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
-
-    var window: UIWindow?
-
     
-    // 1
-    func userNotificationCenter(_ c: UNUserNotificationCenter,
-      didReceive response: UNNotificationResponse,
-      withCompletionHandler completionHandler: @escaping () -> Void
-    ) {
-      // 2
-      if response.actionIdentifier == "markAsDone" {
-        let userInfo = response.notification.request.content.userInfo
-      }
-      completionHandler()
-    }
+    var window: UIWindow?
+    
+    
+    
     
     func application(_ application: UIApplication, didReceive notification: UILocalNotification) {
-        
+        print("notification! \(notification)")
     }
     
-    func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions:[NSObject: AnyObject]?) -> Bool {
-        // Oh Happy Days
+
+    func applicationDidFinishLaunching(_ application: UIApplication) {
+
+//        application.registerUserNotificationSettings(<#T##notificationSettings: UIUserNotificationSettings##UIUserNotificationSettings#>)
+        let center = UNUserNotificationCenter.current()
         
-//        application.registerUserNotificationSettings(
-//            UIUserNotificationSettings(
-//                types: UIUserNotificationType.alert, categories: nil
-//                )
-//          )
-            return true
+        
+        
+        center.requestAuthorization(options: [.alert, .badge, .sound]) { granted, error in
+            print(granted, error)
         }
+        
+
+    }
     
-    
-//    func application(application: UIApplication, didReceiveLocalNotification _, notification: UILocalNotification) {
-//        let alertController = UIAlertController(title: "Notification", message: notification.alertBody, preferredStyle: .alert) // create an alert controller with the notification message
-//        let okAction = UIAlertAction(title: "Ok", style: .cancel, handler: nil) // add an Ok button
-//        alertController.addAction(okAction)
-//        window?.rootViewController?.present(alertController, animated: true, completion: nil) // present the alert through ViewController
-//    }
 
     func applicationWillResignActive(_ application: UIApplication) {
         // Sent when the application is about to move from active to inactive state. This can occur for certain types of temporary interruptions (such as an incoming phone call or SMS message) or when the user quits the application and it begins the transition to the background state.
